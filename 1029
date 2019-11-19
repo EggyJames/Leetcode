@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int twoCitySchedCost(vector<vector<int>>& costs) {
+        int N = costs.size(),sum = 0;
+        vector<int>de(N);
+        for(int i = 0;i<N;i++){
+            sum += costs[i][0];
+            de[i] = costs[i][1] - costs[i][0];
+        }
+        sort(de.begin(),de.end());
+        for(int i = 0;i<N/2;i++)
+            sum+=de[i];
+        return sum;
+    }
+};
