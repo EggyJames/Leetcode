@@ -1,0 +1,25 @@
+class Solution {
+public:
+    string removeDuplicateLetters(string s) {
+        stack<char> sta;
+        map<char,int>m;
+        for(int i = 0;i<s.length();i++){
+            char c = s[i];
+            if(m[c] != 0)
+                continue;
+            string s1 = s.substr(i);
+            while(!sta.empty() and c < sta.top() and s1.find(sta.top()) != string::npos){
+                m[sta.top()]--;
+                sta.pop();
+            }
+            sta.push(c);
+            m[c]++;
+        }
+        string out;
+        while(!sta.empty()){
+            out = sta.top() + out;
+            sta.pop();
+        }
+        return out;
+    }
+};
